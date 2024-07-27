@@ -1,3 +1,3 @@
 # rage_py
 
-Official repository of the package
+Official repository of **`rage_py`** package
