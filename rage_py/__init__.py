@@ -1,1 +1,1 @@
-from .rage import hello
+from .rage import *

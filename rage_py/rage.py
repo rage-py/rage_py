@@ -1,2 +1,5 @@
-def hello():
-  print("Hello world!")
+from .util.hello import returnHello
+
+def greet():
+  greetMsg = returnHello()
+  print(greetMsg)
