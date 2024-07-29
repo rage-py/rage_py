@@ -1,40 +1,36 @@
-# from .util.hello import returnHello
+from .methods.PushAfterInterval import PushAfterInterval
 import time
 import threading
-import sys
 
-def greet():
-    # greetMsg = returnHello()
-    time.sleep(5)
-    print("Hello world by Python 🐍")
+class App():
+    def __init__(self):
+        self.loopActive = False
+        # Private variable
+        self.__loopThread = threading.Thread(target=self.runLoop, args=())
 
-loopActive = False
-
-def runLoop():
-    global loopActive
-    loopActive = True
-    index = 0
-    while loopActive:
-        time.sleep(3)
-        print(f"[{index}]")
-        index += 1
-
-loopThread = threading.Thread(target=runLoop, args=())
-
-def main():
-    global loopActive 
-    loopThread.start()
-    greet()
-
-    try:
-        while True:
-            pass
-    except KeyboardInterrupt:
-        loopActive = False
-        loopThread.join()
-        sys.exit(0)
+    def runLoop(self):
+        self.loopActive = True
     
-  
+        index = 0
+        while self.loopActive:
+            time.sleep(3)
+            print(f"[{index}]")
+            index += 1
+
+
+    def main(self):     
+        self.__loopThread.start()
+        newInstance = PushAfterInterval()
+        newInstance.sayHello()
+
+    def returnLoopactive(self):
+        return self.loopActive
+    
+    def stop(self):
+        self.loopActive = False
+        self.__loopThread.join()
+        return
 
 if __name__ == '__main__':
-    main()
+    app = App()
+    app.main()
